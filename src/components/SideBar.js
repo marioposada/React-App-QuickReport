@@ -1,20 +1,19 @@
-import React from "react";
-import "../helpers/menuItems.js"
-import { menuItems } from "../helpers/menuItems.js";
-import "./sidebar.css";
+import {menuItems} from "../helpers/menuItems"; 
 import MenuItems from "./MenuItems";
+import './sidebar.css'
 
-
-
-export const SideBar = () => {
-  return <div className="sidebar">
-    SideBar
-    <ul className="menus">
-
-    </ul>
-    {menuItems.map((menu,index)=> {
-        return <MenuItems items={menu} key={index} />;
-    })}
-    
-    </div>;
+const Navbar = () => {
+  return (
+    <nav className="nav-area">
+      <ul className="menus">
+        {menuItems.map((menu, index) => {
+          const depthLevel = 0;
+          return <MenuItems items={menu} key={index} depthLevel={depthLevel} />;
+        })}
+      </ul>
+    </nav>
+  );
 };
+
+export default Navbar;
+
