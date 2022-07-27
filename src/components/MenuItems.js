@@ -41,8 +41,8 @@ const MenuItems = ({ items, depthLevel }) => {
         <>
           <button
             type="button"
-            // aria-haspopup="menu"
-            // aria-expanded={dropdown ? "true" : "false"}
+            aria-haspopup="menu"
+            aria-expanded={dropdown ? "true" : "false"}
             onClick={() => setDropdown((prev) => !prev)}
           >
             {items.title}{" "}
