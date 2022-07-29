@@ -1,42 +1,53 @@
 export const menuItems=[
     {
-        title: "DASHBOARD"
+        title: "DASHBOARD",
+        href: "/dashboard"
 
     },
     {
-        title: "MATRICES"
+        title: "MATRICES",
+        href: "/matrices"
     },
     {
         title: "SCG",
         submenu: [
             {
-                title: "Informes"
+                title: "Informes",
+                href: "/informes"
             },
             {
-                title: "Generar Reporte"
+                title: "Generar Reporte",
+                href: "/generar-reporte"
 
             },
             {
-                title: "Protocolos"
+                title: "Protocolos",
+                href: "/protocolos"
             },
             {
-                title: "Habilitaciones"
+                title: "Habilitaciones",
+                href: "/habilitaciones"
             }
         ]
     },
     {
-        title: "PRODUCCION"
+        title: "PRODUCCION",
+        href: "/produccion"
     },
     {
-        title: "INGENIERIA"
+        title: "INGENIERIA",
+        href: "/ingenieria"
     },
     {
-        title: "ABASTECIMIENTO"
+        title: "ABASTECIMIENTO",
+        href: "/abastecimiento"
     },
     {
-        title: "CONTRATOS"
+        title: "CONTRATOS",
+        href: "/contratos"
     },
     {
-        title: "POST-VENTA"
+        title: "POST-VENTA",
+        href: "/post-venta"
     }
 ]
