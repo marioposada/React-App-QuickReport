@@ -6,6 +6,7 @@ const MenuItems = ({ items, depthLevel }) => {
   const [dropdown, setDropdown] = useState(false);
 
   let ref = useRef();
+  let refe = useRef();
 
   useEffect(() => {
     const handler = (event) => {
@@ -30,9 +31,11 @@ const MenuItems = ({ items, depthLevel }) => {
 //     window.innerWidth > 960 && setDropdown(false);
 //   };
 
-const handleClickLink = (e) => {
+const handleClickLink = () => {
  alert("funciona")
- console.log(ref.current.value)
+ if(refe.current.innerHTML === "Protocolos") {
+  alert("Te amooooooooooo")
+ }
 
   // if(e.target.matches(e.target.href("/protocolos")))
   // alert("Viene de protodolos")
@@ -65,7 +68,7 @@ const handleClickLink = (e) => {
         </>
       ) : (
         // <a ref={ref} onClick={handleClickLink} href={`/${items.href}`}>{items.title}</a>
-        <a ref={ref} onClick={handleClickLink} href="/#">{items.title}</a>
+        <a ref={refe} onClick={handleClickLink} href="/#" name={items.title}>{items.title}</a>
       )}
     </li>
   );
