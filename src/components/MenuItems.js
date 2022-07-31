@@ -30,6 +30,15 @@ const MenuItems = ({ items, depthLevel }) => {
 //     window.innerWidth > 960 && setDropdown(false);
 //   };
 
+const handleClickLink = (e) => {
+ alert("funciona")
+ console.log(ref.current.value)
+
+  // if(e.target.matches(e.target.href("/protocolos")))
+  // alert("Viene de protodolos")
+
+}
+
   return (
     <li
       className="menu-items"
@@ -55,7 +64,8 @@ const MenuItems = ({ items, depthLevel }) => {
           />
         </>
       ) : (
-        <a href={`/${items.href}`}>{items.title}</a>
+        // <a ref={ref} onClick={handleClickLink} href={`/${items.href}`}>{items.title}</a>
+        <a ref={ref} onClick={handleClickLink} href="/#">{items.title}</a>
       )}
     </li>
   );
