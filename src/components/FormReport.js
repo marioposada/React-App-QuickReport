@@ -1,6 +1,13 @@
 import React from "react";
 import "./formReport.css";
 
+const initialForm = {
+  informe: "",
+  fecha: "",
+  proveedor: "",
+  
+}
+
 const FormReport = () => {
   return (
     <div className="wrapperForm">
@@ -12,7 +19,7 @@ const FormReport = () => {
         <input type="number" name="oe" placeholder="OE N°" required />
         <input type="number" name="remito" placeholder="N° Remito" required />
         <input type="text" name="cid" placeholder="CID" required />
-        <input type="text" name="cliente" placeholder="Cliente" required />
+        <input type="text" name="cliente" placeholder="Urquiza/Emova/etc" required />
         <input
           type="text"
           name="plano"
@@ -33,6 +40,7 @@ const FormReport = () => {
         />
 
         <textarea name="comments" cols="50" rows="5" required></textarea>
+        <input type="submit" name="enviar" value="Enviar" />
       </form>
     </div>
   );
