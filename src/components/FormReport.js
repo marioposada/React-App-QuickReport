@@ -5,7 +5,17 @@ const initialForm = {
   informe: "",
   fecha: "",
   proveedor: "",
+  oe: "",
+  remito: "",
+  cid: "",
+  cliente:"",
+  plano:"",
+  ubicacion: "",
+  file: [],
+  comments: "",
   
+
+
 }
 
 const FormReport = () => {
