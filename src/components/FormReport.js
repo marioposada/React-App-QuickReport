@@ -1,6 +1,9 @@
 import React from "react";
 import "./formReport.css";
 import { useForm } from "../hooks/useForm";
+import { useRef } from "react";
+
+
 
 const initialForm = {
   informe: "",
@@ -50,6 +53,8 @@ const validationsForm = (form) => {
 };
 
 const FormReport = () => {
+  const inputFile = useRef()
+
   const { form, errors, loading, handleChange, handleBlur, handleSubmit } =
     useForm(initialForm, validationsForm);
   return (
@@ -137,10 +142,10 @@ const FormReport = () => {
           value={form.ubicacion}
           required
         />
-        <input type="file" name="file" placeholder="Imagen" value={form.file} required />
+        <input type="file" name="file" placeholder="Imagen" value={form.file} onChange={handleChange} accept="image/*" ref={inputFile} required />
 
         <textarea name="comments" cols="50" rows="5" value={form.comments} onChange={handleChange} required></textarea>
-        <input type="submit" name="enviar" value="Enviar" />
+        <input type="submit" name="enviar" value="Enviar" ref={inputFile}/>
       </form>
     </div>
   );
