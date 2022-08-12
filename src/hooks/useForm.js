@@ -1,4 +1,3 @@
-import React from "react";
 import { useState } from "react";
 
 export const useForm = (initialForm, validateForm) => {
@@ -11,6 +10,7 @@ export const useForm = (initialForm, validateForm) => {
     const { name, value } = e.target;
 
     setForm({
+      ...form,
       [name]: value,
     });
   };
@@ -23,24 +23,22 @@ export const useForm = (initialForm, validateForm) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     setErrors(validateForm(form));
-    console.log(form)
-    alert(form)
-    if (Object.keys(errors).length===0) {
-        alert("enviando formulario")
-    }else {
-        return
+    console.log(form);
+    alert(form);
+    if (Object.keys(errors).length === 0) {
+      alert("enviando formulario");
+      setLoading(false);
+      setResponse(true);
+      setForm(initialForm);
+    } else {
+      return;
     }
-
-
-
-
-
-
   };
   return {
     form,
     errors,
     loading,
+    response,
     handleChange,
     handleBlur,
     handleSubmit,

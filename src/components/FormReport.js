@@ -22,19 +22,20 @@ const validationsForm = (form) => {
   let regexEmail = /^(\w+[/./-]?){1,}@[a-z]+[/.]\w{2,}$/;
   let regexComments = /^.{1,255}$/;
 
-  if (!form.name.trim()) {
+  // Validacion del numero de informe
+  if (!form.informe.trim()) {
     errors.name = "El campo 'Nombre' es requerido";
-  } else if (!regexName.test(form.name.trim())) {
+  } else if (!regexName.test(form.informe.trim())) {
     errors.name = "El campo 'Nombre' sólo acepta letras y espacios en blanco";
   }
 
-  if (!form.email.trim()) {
+  if (!form.fecha.trim()) {
     errors.email = "El campo 'Email' es requerido";
-  } else if (!regexEmail.test(form.email.trim())) {
+  } else if (!regexEmail.test(form.fecha.trim())) {
     errors.email = "El campo 'Email' es incorrecto";
   }
 
-  if (!form.subject.trim()) {
+  if (!form.proveedor.trim()) {
     errors.subject = "El campo 'Asunto a tratar' es requerido";
   }
 
@@ -115,6 +116,7 @@ const FormReport = () => {
           placeholder="Urquiza/Emova/etc"
           onChange={handleChange}
           onBlur={handleBlur}
+          value={form.cliente}
           required
         />
         <input
@@ -123,6 +125,7 @@ const FormReport = () => {
           placeholder="Numero de plano"
           onChange={handleChange}
           onBlur={handleBlur}
+          value={form.plano}
           required
         />
         <input
@@ -131,11 +134,12 @@ const FormReport = () => {
           placeholder="Ubicacion del producto"
           onChange={handleChange}
           onBlur={handleBlur}
+          value={form.ubicacion}
           required
         />
-        <input type="file" name="file" placeholder="Imagen" required />
+        <input type="file" name="file" placeholder="Imagen" value={form.file} required />
 
-        <textarea name="comments" cols="50" rows="5" required></textarea>
+        <textarea name="comments" cols="50" rows="5" value={form.comments} onChange={handleChange} required></textarea>
         <input type="submit" name="enviar" value="Enviar" />
       </form>
     </div>
