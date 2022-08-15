@@ -53,6 +53,7 @@ const validationsForm = (form) => {
 const FormReport = () => {
   const inputFile = useRef();
   const imageSelected = useRef();
+  
 
   const { form, errors, loading, handleChange, handleBlur, handleSubmit } =
     useForm(initialForm, validationsForm);

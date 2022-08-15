@@ -6,22 +6,43 @@ export const useForm = (initialForm, validateForm) => {
   const [loading, setLoading] = useState(false);
   const [response, setResponse] = useState(null);
 
-  
-
   const handleChange = (e) => {
-    const { name, value} = e.target;
+    const { name, value } = e.target;
 
-    setForm({
-      ...form,
-      [name]: value,
-     
-    });
+    // Verificamos que sea un "File"
+
+    if (e.target.type === "file") {
+      alert("Es un file");
+      const file = e.target.file[0];
+      const reader = new FileReader();
+
+      reader.addEventListener(
+        "load",
+        function () {
+          // convierte la imagen a una cadena en base64
+          current.imageSelected.src = reader.result;
+        },
+        false
+      );
+    } else {
+      setForm({
+        ...form,
+        [name]: value,
+      });
+    }
   };
 
   const handleBlur = (e) => {
     handleChange(e);
     setErrors(validateForm(form));
   };
+
+  // const handlePreviewFile = (e) => {
+  //   const preview = document.querySelector('img');
+  // const file = document.querySelector('input[type=file]').files[0];
+  // const reader = new FileReader();
+
+  // }
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -45,5 +66,6 @@ export const useForm = (initialForm, validateForm) => {
     handleChange,
     handleBlur,
     handleSubmit,
+    // handlePreviewFile
   };
 };
