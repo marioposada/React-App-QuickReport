@@ -1,7 +1,7 @@
 import React from "react";
 import "./formReport.css";
 import { useForm } from "../hooks/useForm";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 
 const initialForm = {
   informe: "",
@@ -51,9 +51,32 @@ const validationsForm = (form) => {
 };
 
 const FormReport = () => {
+  
   const inputFile = useRef();
   const imageSelected = useRef();
-  
+  const [file, setFile] = useState([]);
+
+  const handleFile = (e) => {
+    alert("Es un file");
+    const file = e.target.files[0];
+    const reader = new FileReader();
+
+    reader.addEventListener(
+      "load",
+      function () {
+        console.log(reader);
+        // convierte la imagen a una cadena en base64
+        imageSelected.current.src = reader.result;
+        console.log(imageSelected.current.src);
+      },
+      false
+    );
+
+    if (file) {
+      setFile(reader.readAsDataURL(file));
+      console.log(file);
+    }
+  };
 
   const { form, errors, loading, handleChange, handleBlur, handleSubmit } =
     useForm(initialForm, validationsForm);
@@ -147,12 +170,12 @@ const FormReport = () => {
           name="file"
           placeholder="Imagen"
           value={form.file}
-          onChange={handleChange}
+          onChange={handleFile}
           accept="image/*"
           ref={inputFile}
           required
         />
-        <img ref={imageSelected} width="25px" alt={form.name} src={form.image} />
+        <img ref={imageSelected} width="25px" alt={form.name} src={file}/>
 
         <textarea
           name="comments"
