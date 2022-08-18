@@ -51,7 +51,6 @@ const validationsForm = (form) => {
 };
 
 const FormReport = () => {
-  
   const inputFile = useRef();
   const imageSelected = useRef();
   const [file, setFile] = useState([]);
@@ -65,6 +64,8 @@ const FormReport = () => {
       "load",
       function () {
         console.log(reader);
+        console.log(reader.result);
+
         // convierte la imagen a una cadena en base64
         imageSelected.current.src = reader.result;
         console.log(imageSelected.current.src);
@@ -175,7 +176,7 @@ const FormReport = () => {
           ref={inputFile}
           required
         />
-        <img ref={imageSelected} width="25px" alt={form.name} src={file}/>
+        <img ref={imageSelected} width="25px" alt={form.name} src={file} />
 
         <textarea
           name="comments"
