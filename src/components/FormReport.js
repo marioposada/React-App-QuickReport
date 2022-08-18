@@ -53,30 +53,32 @@ const validationsForm = (form) => {
 const FormReport = () => {
   const inputFile = useRef();
   const imageSelected = useRef();
-  const [file, setFile] = useState([]);
+  const [file, setFile] = useState({});
 
   const handleFile = (e) => {
     alert("Es un file");
-    const file = e.target.files[0];
+    const fil = e.target.files[0];
     const reader = new FileReader();
-
-    reader.addEventListener(
-      "load",
-      function () {
-        console.log(reader);
-        console.log(reader.result);
+    console.log(reader.readyState)
+ 
+// Asignamos un escuchador de eventos al reader
+    reader.addEventListener("load", () => {
 
         // convierte la imagen a una cadena en base64
         imageSelected.current.src = reader.result;
-        console.log(imageSelected.current.src);
+        //console.log(imageSelected.current.src);
       },
       false
     );
-
-    if (file) {
-      setFile(reader.readAsDataURL(file));
-      console.log(file);
-    }
+    reader.readAsDataURL(fil)
+    console.log(reader)
+    
+  
+    // if (file) {
+    //   setFile(reader.readAsDataURL(file));
+      
+    // }
+    console.log(file)
   };
 
   const { form, errors, loading, handleChange, handleBlur, handleSubmit } =
