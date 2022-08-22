@@ -81,6 +81,7 @@ const FormReport = () => {
   // Manejador del formulario, especialmente el evento submit.
   const handleSubmit = (e) => {
     e.preventDefault();
+    
     //Este metodo valida los campos y asigna errores en el caso que los haya
     setErrors(validateForm(form));
     console.log(form);
@@ -106,16 +107,18 @@ const FormReport = () => {
       reader.addEventListener(
         "load",
         () => {
-          // convierte la imagen a una cadena en base64 y la asigna a la propiedad de la referencia de la imagen en el formulario
+
+          // convierte la imagen a una cadena en base64 y la asigna a la propiedad 
+          // de la referencia de la imagen en el formulario
+
           imageSelected.current.src = reader.result;
-          //console.log(imageSelected.current.src);
         },
         false
       );
 
-      // Lee la imagen desde la posicion fil obtenida desde el formulario
+      // Lee la imagen desde e.target.files[0] obtenida desde el formulario
       reader.readAsDataURL(fil);
-      console.log(reader);
+      // console.log(reader);
     };
   
 
