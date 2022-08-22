@@ -1,8 +1,8 @@
 import React from "react";
 import "./formReport.css";
-import { useForm } from "../hooks/useForm";
 import { useRef, useState } from "react";
 
+// Objeto para limpiar el formulario
 const initialForm = {
   informe: "",
   fecha: "",
@@ -17,7 +17,8 @@ const initialForm = {
   comments: "",
 };
 
-const validationsForm = (form) => {
+// Funcion que valida los campos del formulario
+const validateForm = (form) => {
   let errors = {};
   let regexName = /^[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s]+$/;
   let regexEmail = /^(\w+[/./-]?){1,}@[a-z]+[/.]\w{2,}$/;
@@ -50,39 +51,74 @@ const validationsForm = (form) => {
   return errors;
 };
 
+// Componente FormReport del proyecto quickReport
+
 const FormReport = () => {
   const inputFile = useRef();
   const imageSelected = useRef();
   const [file, setFile] = useState({});
+  const [form, setForm] = useState(initialForm);
+  const [errors, setErrors] = useState({});
+  const [loading, setLoading] = useState(false);
+  const [response, setResponse] = useState(null);
 
-  const handleFile = (e) => {
-    alert("Es un file");
-    const fil = e.target.files[0];
-    const reader = new FileReader();
-    console.log(reader.readyState)
- 
-// Asignamos un escuchador de eventos al reader
-    reader.addEventListener("load", () => {
+  // Manejador de los evento del formulario, en este caso captura los campos de texto, numeral
+  const handleChange = (e) => {
+    const { name, value } = e.target;
 
-        // convierte la imagen a una cadena en base64
-        imageSelected.current.src = reader.result;
-        //console.log(imageSelected.current.src);
-      },
-      false
-    );
-    reader.readAsDataURL(fil)
-    console.log(reader)
-    
-  
-    // if (file) {
-    //   setFile(reader.readAsDataURL(file));
-      
-    // }
-    console.log(file)
+    setForm({
+      ...form,
+      [name]: value,
+    });
   };
 
-  const { form, errors, loading, handleChange, handleBlur, handleSubmit } =
-    useForm(initialForm, validationsForm);
+  // Manejador de los campos del formulario, en este caso captura cuando dejamos de hacer foco en los imputs
+  const handleBlur = (e) => {
+    handleChange(e);
+    setErrors(validateForm(form));
+  };
+
+  // Manejador del formulario, especialmente el evento submit.
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    //Este metodo valida los campos y asigna errores en el caso que los haya
+    setErrors(validateForm(form));
+    console.log(form);
+    alert(form);
+
+    if (Object.keys(errors).length === 0) {
+      alert("enviando formulario");
+      setLoading(false);
+      setResponse(true);
+      setForm(initialForm);
+    } else {
+      return;
+    }
+  }
+
+    const handleFile = (e) => {
+      alert("Es un file");
+      const fil = e.target.files[0];
+      const reader = new FileReader();
+      console.log(reader.readyState);
+
+      // Asignamos un escuchador de eventos al reader
+      reader.addEventListener(
+        "load",
+        () => {
+          // convierte la imagen a una cadena en base64 y la asigna a la propiedad de la referencia de la imagen en el formulario
+          imageSelected.current.src = reader.result;
+          //console.log(imageSelected.current.src);
+        },
+        false
+      );
+
+      // Lee la imagen desde la posicion fil obtenida desde el formulario
+      reader.readAsDataURL(fil);
+      console.log(reader);
+    };
+  
+
   return (
     <div className="wrapperForm">
       <h2 className="title">Generar reporte</h2>
