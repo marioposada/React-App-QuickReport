@@ -3,7 +3,6 @@
   height: 100%;
   display: flex;
   flex-direction: column;
-  
 }
 
 .title {
@@ -15,34 +14,38 @@
   display: flex;
   background-color: #f2f2f2;
   flex-direction: column;
-  max-width: 1500px;
-  margin: 15px auto;
-  padding: 15px 25px;
+  max-width: 700px;
+  margin: 15px 160px;
+  padding: 15px 15px;
   padding-bottom: 25px;
   border: solid 1px silver;
+  
 }
+
+
 
 .form input[type="text"] {
-  width: 350px;
-  margin: 5px 10px;
+  width: 650px;
+  margin: 10px 10px;
+  margin-bottom: 25px;
+
 }
 .form input[type="number"] {
-  width: 250px;
-  margin: 5px 10px;
+  width: 650px;
+  margin: 10px 10px;
+  margin-bottom: 25px;
 }
 .form textarea {
-  width: 850px;
-  margin: 5px 10px;
+  width: 650px;
+  margin: 5px auto;
   resize: none;
+  margin-bottom: 25px;
 }
 
-.form input[type="number"] {
-  width: 250px;
-  margin: 5px 10px;
-}
 .form input[type="date"] {
-  width: 250px;
+  width: 650px;
   margin: 5px 10px;
+  margin-bottom: 25px;
 }
 
 .form > input {
@@ -56,9 +59,8 @@
 .form input[type="file"] {
   width: 250px;
   height: 50px;
-  padding: 25px 5px;
-  
- 
+  margin: 5px auto;
+  margin-bottom: 25px;
 }
 
 .form img {
@@ -66,6 +68,13 @@
   height: 400px;
   margin: 15px auto;
 
-  
   padding-left: 15px;
+}
+.form label {
+  padding-left: 10px;
+  font-weight: 600;
+  color: #000;
+  opacity: 50%;
+
+ 
 }

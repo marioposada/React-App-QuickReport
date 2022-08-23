@@ -64,6 +64,31 @@ const FormReport = () => {
 
   // Manejador de los evento del formulario, en este caso captura los campos de texto, numeral
   const handleChange = (e) => {
+
+    // Si es una imagen, la cargo en el formulario y la anexo al objeto para enviar a la BD
+    if (e.target.type === "file") {
+      alert("Es un archivo");
+      const fil = e.target.files[0];
+      const reader = new FileReader();
+      console.log(reader.readyState);
+
+      // Asignamos un escuchador de eventos al reader
+      reader.addEventListener(
+        "load",
+        () => {
+          // convierte la imagen a una cadena en base64 y la asigna a la propiedad
+          // de la referencia de la imagen en el formulario
+
+          imageSelected.current.src = reader.result;
+        },
+        false
+      );
+
+      // Lee la imagen desde e.target.files[0] obtenida desde el formulario
+      reader.readAsDataURL(fil);
+      // console.log(reader);
+    } else {
+
     const { name, value } = e.target;
 
     setForm({
@@ -71,6 +96,7 @@ const FormReport = () => {
       [name]: value,
     });
   };
+}
 
   // Manejador de los campos del formulario, en este caso captura cuando dejamos de hacer foco en los imputs
   const handleBlur = (e) => {
@@ -81,7 +107,7 @@ const FormReport = () => {
   // Manejador del formulario, especialmente el evento submit.
   const handleSubmit = (e) => {
     e.preventDefault();
-    
+
     //Este metodo valida los campos y asigna errores en el caso que los haya
     setErrors(validateForm(form));
     console.log(form);
@@ -95,37 +121,13 @@ const FormReport = () => {
     } else {
       return;
     }
-  }
-
-    const handleFile = (e) => {
-      alert("Es un file");
-      const fil = e.target.files[0];
-      const reader = new FileReader();
-      console.log(reader.readyState);
-
-      // Asignamos un escuchador de eventos al reader
-      reader.addEventListener(
-        "load",
-        () => {
-
-          // convierte la imagen a una cadena en base64 y la asigna a la propiedad 
-          // de la referencia de la imagen en el formulario
-
-          imageSelected.current.src = reader.result;
-        },
-        false
-      );
-
-      // Lee la imagen desde e.target.files[0] obtenida desde el formulario
-      reader.readAsDataURL(fil);
-      // console.log(reader);
-    };
-  
+  };
 
   return (
     <div className="wrapperForm">
       <h2 className="title">Generar reporte</h2>
       <form onSubmit={handleSubmit} className="form">
+        <label htmlFor="informe">N Informe</label>
         <input
           type="number"
           name="informe"
@@ -135,6 +137,7 @@ const FormReport = () => {
           value={form.informe}
           required
         />
+        <label htmlFor="fecha">Fecha</label>
         <input
           type="date"
           name="fecha"
@@ -144,6 +147,7 @@ const FormReport = () => {
           value={form.fecha}
           required
         />
+        <label htmlFor="proveedor">Proveedor</label>
         <input
           type="text"
           name="proveedor"
@@ -153,6 +157,7 @@ const FormReport = () => {
           value={form.proveedor}
           required
         />
+        <label htmlFor="oe">Orden de entrega</label>
         <input
           type="number"
           name="oe"
@@ -162,6 +167,7 @@ const FormReport = () => {
           value={form.oe}
           required
         />
+        <label htmlFor="remito">Remito</label>
         <input
           type="number"
           name="remito"
@@ -171,6 +177,7 @@ const FormReport = () => {
           value={form.remito}
           required
         />
+        <label htmlFor="cid">CID</label>
         <input
           type="text"
           name="cid"
@@ -180,6 +187,7 @@ const FormReport = () => {
           value={form.cid}
           required
         />
+        <label htmlFor="cliente">Cliente</label>
         <input
           type="text"
           name="cliente"
@@ -189,6 +197,7 @@ const FormReport = () => {
           value={form.cliente}
           required
         />
+        <label htmlFor="plano">Numero de plano</label>
         <input
           type="text"
           name="plano"
@@ -198,6 +207,7 @@ const FormReport = () => {
           value={form.plano}
           required
         />
+        <label htmlFor="ubicacion">Ubicacion</label>
         <input
           type="text"
           name="ubicacion"
@@ -207,17 +217,19 @@ const FormReport = () => {
           value={form.ubicacion}
           required
         />
+        <label htmlFor="file">Imagen</label>
+        <img ref={imageSelected} width="25px" alt={form.name} src={file} />
         <input
           type="file"
           name="file"
           placeholder="Imagen"
           value={form.file}
-          onChange={handleFile}
+          onChange={handleChange}
           accept="image/*"
           ref={inputFile}
           required
         />
-        <img ref={imageSelected} width="25px" alt={form.name} src={file} />
+        
 
         <textarea
           name="comments"
