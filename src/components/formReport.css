@@ -19,48 +19,61 @@
   padding: 15px 15px;
   padding-bottom: 25px;
   border: solid 1px silver;
-  
 }
-
-
+::placeholder {
+  color: silver;
+  padding-left: 15px;
+}
 
 .form input[type="text"] {
   width: 650px;
   margin: 10px 10px;
   margin-bottom: 25px;
-
+  border-radius: 3px;
+  border: 1px solid silver;
 }
 .form input[type="number"] {
   width: 650px;
   margin: 10px 10px;
   margin-bottom: 25px;
+  border-radius: 3px;
+  border: 1px solid silver;
 }
 .form textarea {
   width: 650px;
   margin: 5px auto;
   resize: none;
   margin-bottom: 25px;
+  border-radius: 3px;
+  border: 1px solid silver;
 }
 
 .form input[type="date"] {
-  width: 650px;
+  width: 250px;
   margin: 5px 10px;
   margin-bottom: 25px;
+  border-radius: 3px;
+  border: 1px solid silver;
 }
 
 .form > input {
   height: 35px;
-  margin: 5px 10px;
 }
 .form input[type="submit"] {
-  width: 150px;
+  width: 650px;
   margin: 15px auto;
+  border-radius: 5px;
+  height: 40px;
+  font-weight: 400;
+  font-size: 16px;
+  border: 1px solid silver;
 }
 .form input[type="file"] {
   width: 250px;
   height: 50px;
   margin: 5px auto;
   margin-bottom: 25px;
+  border-radius: 3px;
 }
 
 .form img {
@@ -75,6 +88,11 @@
   font-weight: 600;
   color: #000;
   opacity: 50%;
+}
 
- 
+input:focus,
+textarea:focus {
+  background: rgba(0, 0, 0, 0.01);
+  border-radius: 5px;
+  outline: none;
 }

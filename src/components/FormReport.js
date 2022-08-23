@@ -64,11 +64,16 @@ const FormReport = () => {
 
   // Manejador de los evento del formulario, en este caso captura los campos de texto, numeral
   const handleChange = (e) => {
+    const { name, value } = e.target;
 
     // Si es una imagen, la cargo en el formulario y la anexo al objeto para enviar a la BD
     if (e.target.type === "file") {
       alert("Es un archivo");
       const fil = e.target.files[0];
+      setForm({
+        ...form,
+        [name]: value,
+      });
       const reader = new FileReader();
       console.log(reader.readyState);
 
@@ -89,7 +94,7 @@ const FormReport = () => {
       // console.log(reader);
     } else {
 
-    const { name, value } = e.target;
+    
 
     setForm({
       ...form,
